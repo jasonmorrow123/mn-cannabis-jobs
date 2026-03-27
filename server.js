@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || 'admin@findjackpots.com';
+const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || 'admin@mncannabisjobs.com';
 const SMTP_HOST = process.env.SMTP_HOST || 'mail.privateemail.com';
 const SMTP_PORT = process.env.SMTP_PORT || 465;
 const SMTP_USER = process.env.SMTP_USER || '';
