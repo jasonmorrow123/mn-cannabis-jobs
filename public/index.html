@@ -694,9 +694,18 @@
             <label>Job Description *</label>
             <textarea name="description" required placeholder="Responsibilities, requirements, what makes your company great to work for..."></textarea>
           </div>
+          <div class="form-group full">
+            <label>Listing Plan *</label>
+            <select name="plan" id="plan-select" onchange="updatePaymentLink()" required>
+              <option value="">-- Select a plan --</option>
+              <option value="standard">Standard — $99 (30-day listing)</option>
+              <option value="featured">Featured — $149 (top placement + highlighted)</option>
+              <option value="bundle">Bundle — $249 (3 listings, 30 days each)</option>
+            </select>
+          </div>
           <div class="form-group full" style="background:var(--gold-light);border:1px solid #e8d5a3;border-radius:8px;padding:14px;">
             <p style="font-size:0.88rem;color:var(--gray-600);">
-              💳 <strong>Payment:</strong> Select your plan above and complete payment via Stripe. Your listing goes live within 24 hours of payment confirmation.
+              💳 <strong>Payment:</strong> After submitting, you'll be redirected to Stripe to complete payment. Your listing goes live within 24 hours of payment confirmation.
             </p>
           </div>
         </div>
@@ -878,8 +887,20 @@
       });
       if (!res.ok) throw new Error();
       closeModal('post-modal');
-      showToast('✅ Received! We\'ll email you a payment link within a few hours.', 'success');
       form.reset();
+      // Redirect to Stripe based on plan
+      const stripeLinks = {
+        standard: 'https://buy.stripe.com/cNi3cwfd67ZW1dh9c33sI00',
+        featured: 'https://buy.stripe.com/dRm8wQ3uo2FC1dh73V3sI01',
+        bundle: 'https://buy.stripe.com/28E8wQ1mgfso4ptewn3sI02'
+      };
+      const plan = data.plan;
+      if (plan && stripeLinks[plan]) {
+        showToast('✅ Submission received! Redirecting to payment...', 'success');
+        setTimeout(() => { window.location.href = stripeLinks[plan]; }, 1500);
+      } else {
+        showToast('✅ Received! We\'ll email you a payment link shortly.', 'success');
+      }
     } catch (err) {
       showToast('Something went wrong. Email us at admin@mncannabisjobs.com', 'error');
     }
