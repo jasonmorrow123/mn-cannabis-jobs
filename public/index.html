@@ -557,7 +557,7 @@
         </li>
       </ul>
       <button class="btn-post" onclick="openPostModal()">Post Your Job Now →</button>
-      <p class="note">We'll confirm your listing within 24 hours</p>
+      <p class="note">Questions? Email admin@mncannabisjobs.com</p>
     </div>
   </div>
 </section>
@@ -568,7 +568,7 @@
     <div class="footer-links">
       <a href="#jobs">Browse Jobs</a>
       <a href="#post">Post a Job</a>
-      <a href="mailto:hello@mncannabisjobs.com">Contact</a>
+      <a href="mailto:admin@mncannabisjobs.com">Contact</a>
     </div>
     <p class="footer-copy">© 2026 mncannabisjobs.com · Connecting Minnesota's legal cannabis industry · All listings require MN licensing</p>
   </div>
@@ -587,7 +587,7 @@
     <div class="modal-meta" id="modal-meta"></div>
     <div class="modal-body" id="modal-body"></div>
     <div class="modal-footer">
-      <button style="background:var(--gray-100);padding:10px 20px;border-radius:8px;font-weight:600;font-size:0.9rem;" onclick="closeModal('job-modal')">Close</button>
+      <button style="background:var(--gray-100);padding:10px 20px;border-radius:8px;font-weight:600;color:var(--gray-800);font-size:0.9rem;" onclick="closeModal('job-modal')">Close</button>
       <button class="btn-apply" id="modal-apply-btn">Apply Now →</button>
     </div>
   </div>
@@ -850,7 +850,7 @@
       showToast('✅ Received! We\'ll email you a payment link within a few hours.', 'success');
       form.reset();
     } catch (err) {
-      showToast('Something went wrong. Email us at hello@mncannabisjobs.com', 'error');
+      showToast('Something went wrong. Email us at admin@mncannabisjobs.com', 'error');
     }
   }
 
