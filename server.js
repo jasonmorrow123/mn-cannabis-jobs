@@ -195,6 +195,23 @@ app.post('/api/post-job', async (req, res) => {
   res.json({ success: true });
 });
 
+// Sitemap
+app.get('/sitemap.xml', (req, res) => {
+  const jobs = getJobsFromFile();
+  const urls = [
+    'https://mncannabisjobs.com/',
+    'https://mncannabisjobs.com/privacy',
+    'https://mncannabisjobs.com/terms',
+    ...jobs.map(j => `https://mncannabisjobs.com/#job-${j.id}`)
+  ];
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.map(url => `  <url><loc>${url}</loc><changefreq>weekly</changefreq></url>`).join('\n')}
+</urlset>`;
+  res.header('Content-Type', 'application/xml');
+  res.send(xml);
+});
+
 // Legal pages
 app.get('/privacy', (req, res) => res.sendFile(path.join(__dirname, 'public', 'privacy.html')));
 app.get('/terms', (req, res) => res.sendFile(path.join(__dirname, 'public', 'terms.html')));
