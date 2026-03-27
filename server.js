@@ -59,17 +59,29 @@ app.get('/api/jobs/:id', (req, res) => {
 });
 
 // POST email alert signup
-app.post('/api/alerts', (req, res) => {
+app.post('/api/alerts', async (req, res) => {
   const { email, keywords } = req.body;
   if (!email) return res.status(400).json({ error: 'Email required' });
 
-  // Append to alerts file
-  const entry = { email, keywords: keywords || '', signedUp: new Date().toISOString() };
-  const alertsFile = path.join(__dirname, 'alerts.json');
-  let alerts = [];
-  try { alerts = JSON.parse(fs.readFileSync(alertsFile, 'utf8')); } catch (e) {}
-  alerts.push(entry);
-  fs.writeFileSync(alertsFile, JSON.stringify(alerts, null, 2));
+  // Email notification so signups are never lost on redeploy
+  if (SMTP_USER && SMTP_PASS) {
+    try {
+      const transporter = nodemailer.createTransport({
+        host: SMTP_HOST,
+        port: parseInt(SMTP_PORT),
+        secure: true,
+        auth: { user: SMTP_USER, pass: SMTP_PASS }
+      });
+      await transporter.sendMail({
+        from: SMTP_USER,
+        to: NOTIFY_EMAIL,
+        subject: `New Job Alert Signup — mncannabisjobs.com`,
+        text: `New email alert signup:\n\nEmail: ${email}\nKeywords: ${keywords || 'none'}\nSigned up: ${new Date().toISOString()}`
+      });
+    } catch (e) {
+      console.error('Alert email error:', e.message);
+    }
+  }
 
   res.json({ success: true });
 });
