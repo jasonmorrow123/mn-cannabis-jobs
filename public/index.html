@@ -300,6 +300,9 @@
     }
     .post-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
     .pricing-list { list-style: none; margin-bottom: 20px; }
+    .btn-tier { display:inline-block; padding:4px 12px; border-radius:6px; background:var(--green); color:#fff; font-size:0.82rem; font-weight:600; text-decoration:none; margin-left:10px; white-space:nowrap; }
+    .btn-tier:hover { opacity:0.85; }
+    .btn-tier-featured { background:var(--gold); }
     .pricing-list li {
       display: flex; justify-content: space-between;
       padding: 8px 0; border-bottom: 1px solid var(--gray-100);
@@ -466,7 +469,7 @@
   <!-- LAUNCH NOTICE -->
   <div style="background:#fff8e1;border:1px solid #ffe082;border-radius:10px;padding:14px 20px;margin-bottom:20px;display:flex;align-items:center;gap:12px;font-size:0.88rem;color:#7a6200;">
     <span style="font-size:1.2rem;">🚀</span>
-    <span><strong>Just launched!</strong> Listings below are curated samples. <strong>Are you hiring?</strong> <a href="#post" style="color:var(--green);font-weight:700;">Post your real job for $99 →</a> &nbsp;|&nbsp; Searching for work? Browse live MN cannabis jobs on <a href="https://www.indeed.com/q-Cannabis-l-Minnesota-jobs.html" target="_blank" style="color:var(--green);font-weight:700;">Indeed</a> or <a href="https://app.vangst.com/jobs/browse/us/mn" target="_blank" style="color:var(--green);font-weight:700;">Vangst</a>.</span>
+    <span><strong>Just launched!</strong> Listings below are curated samples. <strong>Are you hiring?</strong> <a href="#post" style="color:var(--green);font-weight:700;">Post your job →</a> &nbsp;|&nbsp; Searching for work? Browse live MN cannabis jobs on <a href="https://www.indeed.com/q-Cannabis-l-Minnesota-jobs.html" target="_blank" style="color:var(--green);font-weight:700;">Indeed</a> or <a href="https://app.vangst.com/jobs/browse/us/mn" target="_blank" style="color:var(--green);font-weight:700;">Vangst</a>.</span>
   </div>
 
   <!-- FILTERS -->
@@ -568,18 +571,20 @@
         <li>
           <span>Standard Listing (30 days)</span>
           <span class="price">$99</span>
+          <a href="https://buy.stripe.com/cNi3cwfd67ZW1dh9c33sI00" target="_blank" class="btn-tier">Select →</a>
         </li>
         <li>
           <span>Featured Listing (top placement)</span>
           <span class="price">$149</span>
+          <a href="https://buy.stripe.com/dRm8wQ3uo2FC1dh73V3sI01" target="_blank" class="btn-tier btn-tier-featured">Select →</a>
         </li>
         <li>
           <span>Multi-Location Bundle (3 posts)</span>
           <span class="price">$249</span>
+          <a href="https://buy.stripe.com/28E8wQ1mgfso4ptewn3sI02" target="_blank" class="btn-tier">Select →</a>
         </li>
       </ul>
-      <button class="btn-post" onclick="openPostModal()">Post Your Job Now →</button>
-      <p class="note">Questions? Email admin@mncannabisjobs.com</p>
+      <p class="note" style="margin-top:12px;">Questions? Email <a href="mailto:admin@mncannabisjobs.com" style="color:var(--green);">admin@mncannabisjobs.com</a></p>
     </div>
   </div>
 </section>
@@ -691,7 +696,7 @@
           </div>
           <div class="form-group full" style="background:var(--gold-light);border:1px solid #e8d5a3;border-radius:8px;padding:14px;">
             <p style="font-size:0.88rem;color:var(--gray-600);">
-              💳 <strong>Payment:</strong> After submitting, we'll email you a secure payment link ($99 standard / $149 featured). Your listing goes live within 24 hours of payment confirmation.
+              💳 <strong>Payment:</strong> Select your plan above and complete payment via Stripe. Your listing goes live within 24 hours of payment confirmation.
             </p>
           </div>
         </div>
