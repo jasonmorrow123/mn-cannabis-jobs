@@ -698,6 +698,7 @@
             <label>Listing Plan *</label>
             <select name="plan" id="plan-select" onchange="updatePaymentLink()" required>
               <option value="">-- Select a plan --</option>
+              <option value="free">Free Trial (Invited)</option>
               <option value="standard">Standard — $99 (30-day listing)</option>
               <option value="featured">Featured — $149 (top placement + highlighted)</option>
               <option value="bundle">Bundle — $249 (3 listings, 30 days each)</option>
@@ -898,8 +899,10 @@
       if (plan && stripeLinks[plan]) {
         showToast('✅ Submission received! Redirecting to payment...', 'success');
         setTimeout(() => { window.location.href = stripeLinks[plan]; }, 1500);
+      } else if (plan === 'free') {
+        showToast('✅ Received! Your free listing will be live within 24 hours.', 'success');
       } else {
-        showToast('✅ Received! We\'ll email you a payment link shortly.', 'success');
+        showToast('✅ Received! We\'ll be in touch shortly.', 'success');
       }
     } catch (err) {
       showToast('Something went wrong. Email us at admin@mncannabisjobs.com', 'error');
