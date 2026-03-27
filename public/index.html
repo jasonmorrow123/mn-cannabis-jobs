@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MN Cannabis Jobs — Minnesota's Cannabis Job Board</title>
+  <meta name="description" content="Find cannabis jobs in Minnesota. Budtenders, cultivators, managers, compliance, and more — all MN-verified openings in one place.">
+  <meta property="og:title" content="MN Cannabis Jobs — Minnesota's Cannabis Job Board">
+  <meta property="og:description" content="Real cannabis jobs. Real Minnesota employers. Zero noise.">
+  <meta property="og:url" content="https://mncannabisjobs.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #1a6b3c;
+      --green-dark: #124d2b;
+      --green-light: #e8f5ee;
+      --gold: #c9952a;
+      --gold-light: #fdf5e4;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-400: #9ca3af;
+      --gray-600: #4b5563;
+      --gray-800: #1f2937;
+      --white: #ffffff;
+      --radius: 10px;
+      --shadow: 0 1px 4px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--gray-800); background: var(--gray-50); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: inherit; border: none; }
+
+    /* NAV */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      position: sticky; top: 0; z-index: 100;
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 1.15rem; color: var(--green);
+    }
+    .logo-icon {
+      width: 36px; height: 36px; background: var(--green);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .nav-cta {
+      background: var(--green); color: var(--white);
+      padding: 9px 20px; border-radius: var(--radius);
+      font-weight: 600; font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--green-dark); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 60%, #2d8c55 100%);
+      color: var(--white); padding: 72px 24px 64px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '🌿';
+      position: absolute; right: -20px; top: -20px;
+      font-size: 280px; opacity: 0.06;
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 800px; margin: 0 auto; text-align: center; position: relative; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+      padding: 5px 14px; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800; line-height: 1.15; margin-bottom: 18px;
+    }
+    .hero h1 span { color: #7ee8a2; }
+    .hero p {
+      font-size: 1.1rem; opacity: 0.88;
+      max-width: 580px; margin: 0 auto 36px;
+    }
+    .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--white); color: var(--green);
+      padding: 14px 28px; border-radius: var(--radius);
+      font-weight: 700; font-size: 1rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 2px solid rgba(255,255,255,0.6);
+      padding: 14px 28px; border-radius: var(--radius);
+      font-weight: 600; font-size: 1rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+    .hero-trust {
+      margin-top: 28px; font-size: 0.82rem; opacity: 0.65;
+      display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
+    }
+    .hero-trust span::before { content: '✓ '; }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: var(--green-dark); color: var(--white);
+      padding: 20px 24px;
+    }
+    .stats-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-around; flex-wrap: wrap; gap: 16px;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-size: 1.6rem; font-weight: 800; color: #7ee8a2; }
+    .stat-label { font-size: 0.78rem; opacity: 0.75; margin-top: 2px; }
+
+    /* MAIN LAYOUT */
+    .main { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+
+    /* FILTERS */
+    .filters {
+      background: var(--white); border-radius: var(--radius);
+      border: 1px solid var(--gray-200); padding: 20px;
+      margin-bottom: 24px; box-shadow: var(--shadow);
+    }
+    .filters-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; }
+    .filter-group { flex: 1; min-width: 160px; }
+    .filter-group label { font-size: 0.78rem; font-weight: 600; color: var(--gray-600); display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .filter-group input, .filter-group select {
+      width: 100%; padding: 10px 14px;
+      border: 1px solid var(--gray-200); border-radius: 8px;
+      font-size: 0.9rem; font-family: inherit;
+      background: var(--white); color: var(--gray-800);
+      appearance: none;
+    }
+    .filter-group input:focus, .filter-group select:focus {
+      outline: none; border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(26, 107, 60, 0.1);
+    }
+    .filter-count { color: var(--gray-600); font-size: 0.88rem; margin-top: 12px; }
+    .filter-count strong { color: var(--green); }
+
+    /* JOB GRID */
+    .jobs-grid { display: flex; flex-direction: column; gap: 14px; }
+    .job-card {
+      background: var(--white); border-radius: var(--radius);
+      border: 1px solid var(--gray-200); padding: 22px 24px;
+      box-shadow: var(--shadow); transition: box-shadow 0.2s, transform 0.15s;
+      cursor: pointer; position: relative;
+    }
+    .job-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-1px); }
+    .job-card.featured { border-color: var(--gold); border-left: 4px solid var(--gold); }
+    .featured-badge {
+      position: absolute; top: 16px; right: 16px;
+      background: var(--gold-light); color: var(--gold);
+      padding: 3px 10px; border-radius: 12px;
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .job-header { display: flex; align-items: flex-start; gap: 16px; }
+    .job-logo {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: var(--green-light); border: 1px solid var(--gray-200);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0;
+    }
+    .job-title { font-size: 1.05rem; font-weight: 700; color: var(--gray-800); margin-bottom: 3px; }
+    .job-company { font-size: 0.9rem; color: var(--green); font-weight: 600; }
+    .job-meta {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-top: 14px;
+    }
+    .job-tag {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 0.82rem; color: var(--gray-600);
+    }
+    .job-tag .icon { font-size: 0.9rem; }
+    .job-type-badge {
+      padding: 3px 10px; border-radius: 20px;
+      font-size: 0.78rem; font-weight: 600;
+    }
+    .badge-full { background: #e8f5ee; color: var(--green); }
+    .badge-part { background: #e8f0ff; color: #5b4fcf; }
+    .badge-seasonal { background: #fff3e0; color: #e65100; }
+    .badge-contract { background: #fce4ec; color: #c62828; }
+    .job-salary { font-weight: 700; color: var(--gray-800); font-size: 0.9rem; }
+    .job-actions { display: flex; justify-content: flex-end; margin-top: 14px; }
+    .btn-apply {
+      background: var(--green); color: var(--white);
+      padding: 9px 22px; border-radius: 8px;
+      font-weight: 600; font-size: 0.88rem;
+      transition: background 0.2s;
+    }
+    .btn-apply:hover { background: var(--green-dark); }
+
+    /* EMPTY STATE */
+    .empty-state {
+      text-align: center; padding: 60px 24px;
+      color: var(--gray-400);
+    }
+    .empty-state .emoji { font-size: 3rem; margin-bottom: 16px; }
+    .empty-state p { font-size: 1rem; }
+
+    /* WHY US */
+    .why-section {
+      background: var(--white); border-top: 1px solid var(--gray-200);
+      padding: 64px 24px; margin-top: 48px;
+    }
+    .why-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.78rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--green); margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800;
+      margin-bottom: 12px; color: var(--gray-800);
+    }
+    .section-sub { color: var(--gray-600); font-size: 1rem; max-width: 600px; margin-bottom: 40px; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    .why-card {
+      background: var(--gray-50); border: 1px solid var(--gray-200);
+      border-radius: var(--radius); padding: 28px;
+    }
+    .why-icon { font-size: 2rem; margin-bottom: 14px; }
+    .why-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .why-card p { font-size: 0.88rem; color: var(--gray-600); line-height: 1.6; }
+
+    /* ALERT SIGNUP */
+    .alert-section {
+      background: var(--green-light); border-top: 1px solid #c8e6d5;
+      padding: 48px 24px;
+    }
+    .alert-inner {
+      max-width: 600px; margin: 0 auto; text-align: center;
+    }
+    .alert-inner h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+    .alert-inner p { color: var(--gray-600); font-size: 0.95rem; margin-bottom: 24px; }
+    .alert-form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .alert-form input {
+      flex: 1; min-width: 220px; padding: 12px 16px;
+      border: 1px solid var(--gray-200); border-radius: 8px;
+      font-size: 0.95rem; font-family: inherit;
+    }
+    .alert-form input:focus { outline: none; border-color: var(--green); }
+    .btn-green {
+      background: var(--green); color: var(--white);
+      padding: 12px 24px; border-radius: 8px;
+      font-weight: 700; font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    .btn-green:hover { background: var(--green-dark); }
+
+    /* POST JOB SECTION */
+    .post-section {
+      background: var(--gray-800); color: var(--white);
+      padding: 64px 24px;
+    }
+    .post-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px; flex-wrap: wrap;
+    }
+    .post-text { flex: 1; min-width: 280px; }
+    .post-text .section-label { color: #7ee8a2; }
+    .post-text h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; }
+    .post-text p { opacity: 0.8; font-size: 0.95rem; line-height: 1.7; }
+    .post-card {
+      background: var(--white); color: var(--gray-800);
+      border-radius: var(--radius); padding: 32px;
+      min-width: 280px; flex: 0 0 auto;
+    }
+    .post-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 16px; }
+    .pricing-list { list-style: none; margin-bottom: 20px; }
+    .pricing-list li {
+      display: flex; justify-content: space-between;
+      padding: 8px 0; border-bottom: 1px solid var(--gray-100);
+      font-size: 0.9rem;
+    }
+    .pricing-list li:last-child { border-bottom: none; }
+    .pricing-list .price { font-weight: 700; color: var(--green); }
+    .btn-post {
+      width: 100%; background: var(--green); color: var(--white);
+      padding: 13px; border-radius: 8px;
+      font-weight: 700; font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    .btn-post:hover { background: var(--green-dark); }
+    .post-card .note { font-size: 0.75rem; color: var(--gray-400); text-align: center; margin-top: 10px; }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5); z-index: 200;
+      align-items: center; justify-content: center;
+      padding: 16px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--white); border-radius: 14px;
+      max-width: 640px; width: 100%;
+      max-height: 90vh; overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+    }
+    .modal-header {
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid var(--gray-100);
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+    }
+    .modal-header h2 { font-size: 1.2rem; font-weight: 700; }
+    .modal-header .company { color: var(--green); font-weight: 600; font-size: 0.95rem; margin-top: 4px; }
+    .modal-close {
+      background: var(--gray-100); border: none; border-radius: 6px;
+      width: 32px; height: 32px; font-size: 1.1rem; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-close:hover { background: var(--gray-200); }
+    .modal-meta {
+      padding: 16px 28px;
+      display: flex; flex-wrap: wrap; gap: 12px;
+      background: var(--gray-50); border-bottom: 1px solid var(--gray-100);
+    }
+    .modal-body { padding: 24px 28px; }
+    .modal-body h3 { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray-600); margin: 20px 0 10px; }
+    .modal-body h3:first-child { margin-top: 0; }
+    .modal-body p { font-size: 0.95rem; color: var(--gray-600); line-height: 1.7; white-space: pre-line; }
+    .modal-footer {
+      padding: 20px 28px; border-top: 1px solid var(--gray-100);
+      display: flex; gap: 12px; justify-content: flex-end;
+    }
+
+    /* POST JOB FORM MODAL */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label { font-size: 0.82rem; font-weight: 600; color: var(--gray-600); text-transform: uppercase; letter-spacing: 0.04em; }
+    .form-group input, .form-group select, .form-group textarea {
+      padding: 10px 14px; border: 1px solid var(--gray-200);
+      border-radius: 8px; font-family: inherit; font-size: 0.92rem;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(26, 107, 60, 0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--gray-800); color: var(--white);
+      padding: 32px 24px; text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 16px; }
+    .footer-links a { font-size: 0.88rem; opacity: 0.65; transition: opacity 0.2s; }
+    .footer-links a:hover { opacity: 1; }
+    .footer-copy { font-size: 0.78rem; opacity: 0.4; }
+
+    /* TOAST */
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: var(--gray-800); color: var(--white);
+      padding: 13px 24px; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 500;
+      transition: transform 0.3s; z-index: 300;
+      white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.success { background: var(--green); }
+    .toast.error { background: #dc2626; }
+
+    @media (max-width: 640px) {
+      .filters-row { flex-direction: column; }
+      .filter-group { min-width: 100%; }
+      .post-inner { flex-direction: column; }
+      .modal-header { flex-direction: column; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: 1; }
+      .stats-inner { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">🌿</div>
+      MN Cannabis Jobs
+    </a>
+    <button class="nav-cta" onclick="openPostModal()">Post a Job</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🌿 Minnesota's Cannabis Job Board</div>
+    <h1>Find Your Career in <span>Minnesota Cannabis</span></h1>
+    <p>Real openings. Real employers. Built exclusively for MN's fast-growing cannabis industry — not buried under thousands of irrelevant results.</p>
+    <div class="hero-btns">
+      <a href="#jobs" class="btn-primary">Browse Open Positions</a>
+      <button class="btn-outline" onclick="openPostModal()">Post a Job — $99</button>
+    </div>
+    <div class="hero-trust">
+      <span>Free for job seekers</span>
+      <span>MN employers only</span>
+      <span>Updated daily</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-num">96+</div>
+      <div class="stat-label">Licensed MN Dispensaries</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1,400+</div>
+      <div class="stat-label">Operators in the Pipeline</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">$31M+</div>
+      <div class="stat-label">Adult-Use Sales Since Launch</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" id="job-count-stat">20+</div>
+      <div class="stat-label">Active Job Openings</div>
+    </div>
+  </div>
+</div>
+
+<!-- JOBS -->
+<div class="main" id="jobs">
+  <!-- FILTERS -->
+  <div class="filters">
+    <div class="filters-row">
+      <div class="filter-group" style="flex:2; min-width:220px;">
+        <label>Search</label>
+        <input type="text" id="search" placeholder="Title, company, keyword..." oninput="filterJobs()">
+      </div>
+      <div class="filter-group">
+        <label>Category</label>
+        <select id="filter-category" onchange="filterJobs()">
+          <option value="all">All Categories</option>
+          <option>Retail & Customer Service</option>
+          <option>Cultivation & Growing</option>
+          <option>Manufacturing & Processing</option>
+          <option>Compliance & Administration</option>
+          <option>Management</option>
+          <option>Marketing & Sales</option>
+          <option>Delivery & Distribution</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Type</label>
+        <select id="filter-type" onchange="filterJobs()">
+          <option value="all">All Types</option>
+          <option>Full-Time</option>
+          <option>Part-Time</option>
+          <option>Seasonal</option>
+          <option>Contract</option>
+        </select>
+      </div>
+    </div>
+    <div class="filter-count" id="filter-count"></div>
+  </div>
+
+  <!-- JOB LIST -->
+  <div class="jobs-grid" id="jobs-grid">
+    <div class="empty-state"><div class="emoji">🌿</div><p>Loading jobs...</p></div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="why-inner">
+    <div class="section-label">Why mncannabisjobs.com</div>
+    <h2 class="section-title">Built for Minnesota Cannabis — Not Everyone Else</h2>
+    <p class="section-sub">Indeed has millions of jobs. We have the right ones for MN cannabis professionals and employers.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🎯</div>
+        <h3>Pre-Qualified Candidates</h3>
+        <p>Every applicant on this site is specifically looking for cannabis work in Minnesota — not just searching "jobs near me." Better fit, faster hires.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📋</div>
+        <h3>MN Regulation Aware</h3>
+        <p>Job listings here speak the language — METRC, OCM compliance, Cannabis Agent Registration. No need to explain the basics to every applicant.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌱</div>
+        <h3>Growing With the Market</h3>
+        <p>96 licensed dispensaries today. 1,400+ in the pipeline. MN cannabis is just getting started and so are we.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📍</div>
+        <h3>Minnesota First</h3>
+        <p>Twin Cities to Duluth, Mankato to Ely — we cover the whole state, not just metro. Your region, your industry, your job board.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL ALERTS -->
+<section class="alert-section">
+  <div class="alert-inner">
+    <h2>🔔 Get Job Alerts</h2>
+    <p>New cannabis jobs posted daily. Get notified when roles matching your interests open up in Minnesota.</p>
+    <form class="alert-form" onsubmit="signupAlert(event)">
+      <input type="email" id="alert-email" placeholder="your@email.com" required>
+      <button type="submit" class="btn-green">Notify Me</button>
+    </form>
+  </div>
+</section>
+
+<!-- POST A JOB -->
+<section class="post-section" id="post">
+  <div class="post-inner">
+    <div class="post-text">
+      <div class="section-label">For Employers</div>
+      <h2>Hire Smarter in Minnesota Cannabis</h2>
+      <p>Reach candidates who already understand METRC, Minnesota regulations, and the plant. No sifting through thousands of unqualified applicants from generic job boards.</p>
+      <br>
+      <p style="font-size:0.88rem; opacity:0.65;">Listings run for 30 days and include featured placement on the home page. We manually review every submission to ensure quality.</p>
+    </div>
+    <div class="post-card">
+      <h3>Posting Options</h3>
+      <ul class="pricing-list">
+        <li>
+          <span>Standard Listing (30 days)</span>
+          <span class="price">$99</span>
+        </li>
+        <li>
+          <span>Featured Listing (top placement)</span>
+          <span class="price">$149</span>
+        </li>
+        <li>
+          <span>Multi-Location Bundle (3 posts)</span>
+          <span class="price">$249</span>
+        </li>
+      </ul>
+      <button class="btn-post" onclick="openPostModal()">Post Your Job Now →</button>
+      <p class="note">We'll confirm your listing within 24 hours</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="#jobs">Browse Jobs</a>
+      <a href="#post">Post a Job</a>
+      <a href="mailto:hello@mncannabisjobs.com">Contact</a>
+    </div>
+    <p class="footer-copy">© 2026 mncannabisjobs.com · Connecting Minnesota's legal cannabis industry · All listings require MN licensing</p>
+  </div>
+</footer>
+
+<!-- JOB DETAIL MODAL -->
+<div class="modal-overlay" id="job-modal">
+  <div class="modal" id="job-modal-content">
+    <div class="modal-header">
+      <div>
+        <h2 id="modal-title"></h2>
+        <div class="company" id="modal-company"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal('job-modal')">✕</button>
+    </div>
+    <div class="modal-meta" id="modal-meta"></div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer">
+      <button style="background:var(--gray-100);padding:10px 20px;border-radius:8px;font-weight:600;font-size:0.9rem;" onclick="closeModal('job-modal')">Close</button>
+      <button class="btn-apply" id="modal-apply-btn">Apply Now →</button>
+    </div>
+  </div>
+</div>
+
+<!-- POST JOB MODAL -->
+<div class="modal-overlay" id="post-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <h2>Post a Job on MN Cannabis Jobs</h2>
+        <div style="font-size:0.88rem;color:var(--gray-600);margin-top:4px;">We'll review and publish within 24 hours</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('post-modal')">✕</button>
+    </div>
+    <div class="modal-body">
+      <form id="post-form" onsubmit="submitJob(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Company Name *</label>
+            <input type="text" name="company" required placeholder="Your dispensary or business">
+          </div>
+          <div class="form-group">
+            <label>Contact Name *</label>
+            <input type="text" name="contact" required placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="email" required placeholder="hiring@yourcompany.com">
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" name="phone" placeholder="(651) 555-0100">
+          </div>
+          <div class="form-group">
+            <label>Job Title *</label>
+            <input type="text" name="title" required placeholder="e.g. Budtender, Cultivation Tech">
+          </div>
+          <div class="form-group">
+            <label>Location *</label>
+            <input type="text" name="location" required placeholder="City, MN">
+          </div>
+          <div class="form-group">
+            <label>Job Type</label>
+            <select name="type">
+              <option>Full-Time</option>
+              <option>Part-Time</option>
+              <option>Seasonal</option>
+              <option>Contract</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select name="category">
+              <option>Retail & Customer Service</option>
+              <option>Cultivation & Growing</option>
+              <option>Manufacturing & Processing</option>
+              <option>Compliance & Administration</option>
+              <option>Management</option>
+              <option>Marketing & Sales</option>
+              <option>Delivery & Distribution</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Salary / Pay Range</label>
+            <input type="text" name="salary" placeholder="e.g. $17–20/hr or $55,000/yr">
+          </div>
+          <div class="form-group">
+            <label>Where to Apply (URL or email)</label>
+            <input type="text" name="applyUrl" placeholder="https://yoursite.com/careers">
+          </div>
+          <div class="form-group full">
+            <label>Job Description *</label>
+            <textarea name="description" required placeholder="Responsibilities, requirements, what makes your company great to work for..."></textarea>
+          </div>
+          <div class="form-group full" style="background:var(--gold-light);border:1px solid #e8d5a3;border-radius:8px;padding:14px;">
+            <p style="font-size:0.88rem;color:var(--gray-600);">
+              💳 <strong>Payment:</strong> After submitting, we'll email you a secure payment link ($99 standard / $149 featured). Your listing goes live within 24 hours of payment confirmation.
+            </p>
+          </div>
+        </div>
+        <div style="margin-top:20px;">
+          <button type="submit" class="btn-post">Submit Listing Request →</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  let allJobs = [];
+  let currentJobId = null;
+
+  const categoryEmoji = {
+    'Retail & Customer Service': '🛍️',
+    'Cultivation & Growing': '🌱',
+    'Manufacturing & Processing': '🔬',
+    'Compliance & Administration': '📋',
+    'Management': '👔',
+    'Marketing & Sales': '📣',
+    'Delivery & Distribution': '🚐'
+  };
+
+  const typeBadge = {
+    'Full-Time': 'badge-full',
+    'Part-Time': 'badge-part',
+    'Seasonal': 'badge-seasonal',
+    'Contract': 'badge-contract'
+  };
+
+  async function loadJobs() {
+    try {
+      const res = await fetch('/api/jobs');
+      allJobs = await res.json();
+      renderJobs(allJobs);
+      document.getElementById('job-count-stat').textContent = allJobs.length + '+';
+    } catch (e) {
+      document.getElementById('jobs-grid').innerHTML = '<div class="empty-state"><div class="emoji">⚠️</div><p>Could not load jobs. Please try again.</p></div>';
+    }
+  }
+
+  function filterJobs() {
+    const search = document.getElementById('search').value.toLowerCase();
+    const cat = document.getElementById('filter-category').value;
+    const type = document.getElementById('filter-type').value;
+
+    let filtered = allJobs.filter(j => {
+      const matchSearch = !search ||
+        j.title.toLowerCase().includes(search) ||
+        j.company.toLowerCase().includes(search) ||
+        j.location.toLowerCase().includes(search) ||
+        j.description.toLowerCase().includes(search);
+      const matchCat = cat === 'all' || j.category === cat;
+      const matchType = type === 'all' || j.type === type;
+      return matchSearch && matchCat && matchType;
+    });
+
+    renderJobs(filtered);
+  }
+
+  function renderJobs(jobs) {
+    const grid = document.getElementById('jobs-grid');
+    const count = document.getElementById('filter-count');
+
+    if (jobs.length === 0) {
+      grid.innerHTML = '<div class="empty-state"><div class="emoji">🔍</div><p>No jobs match your filters. Try broadening your search.</p></div>';
+      count.innerHTML = '';
+      return;
+    }
+
+    count.innerHTML = `Showing <strong>${jobs.length}</strong> job${jobs.length !== 1 ? 's' : ''}`;
+
+    grid.innerHTML = jobs.map(job => `
+      <div class="job-card ${job.featured ? 'featured' : ''}" onclick="openJob(${job.id})">
+        ${job.featured ? '<div class="featured-badge">⭐ Featured</div>' : ''}
+        <div class="job-header">
+          <div class="job-logo">${categoryEmoji[job.category] || '🌿'}</div>
+          <div style="flex:1;min-width:0;">
+            <div class="job-title">${job.title}</div>
+            <div class="job-company">${job.company}</div>
+          </div>
+        </div>
+        <div class="job-meta">
+          <span class="job-tag"><span class="icon">📍</span>${job.location}</span>
+          <span class="job-type-badge ${typeBadge[job.type] || 'badge-full'}">${job.type}</span>
+          <span class="job-tag"><span class="icon">🗂️</span>${job.category}</span>
+          <span class="job-salary">${job.salary}</span>
+        </div>
+        <div class="job-actions">
+          <button class="btn-apply" onclick="event.stopPropagation(); openJob(${job.id})">View & Apply →</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function openJob(id) {
+    const job = allJobs.find(j => j.id === id);
+    if (!job) return;
+    currentJobId = id;
+
+    document.getElementById('modal-title').textContent = job.title;
+    document.getElementById('modal-company').textContent = job.company;
+
+    document.getElementById('modal-meta').innerHTML = `
+      <span class="job-tag"><span class="icon">📍</span>${job.location}</span>
+      <span class="job-type-badge ${typeBadge[job.type] || 'badge-full'}">${job.type}</span>
+      <span class="job-tag"><span class="icon">🗂️</span>${job.category}</span>
+      <span class="job-salary" style="margin-left:auto;">${job.salary}</span>
+    `;
+
+    document.getElementById('modal-body').innerHTML = `
+      <h3>About This Role</h3>
+      <p>${job.description}</p>
+      <h3 style="margin-top:20px;">Posted</h3>
+      <p style="color:var(--gray-400);font-size:0.85rem;">${new Date(job.posted).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'})} · Expires ${new Date(job.expires).toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'})}</p>
+    `;
+
+    const applyBtn = document.getElementById('modal-apply-btn');
+    if (job.applyUrl && job.applyUrl !== '#apply') {
+      applyBtn.onclick = () => window.open(job.applyUrl, '_blank');
+    } else {
+      applyBtn.onclick = () => {
+        closeModal('job-modal');
+        showToast('To apply, contact ' + job.company + ' directly or check their website.', 'success');
+      };
+    }
+
+    document.getElementById('job-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function openPostModal() {
+    document.getElementById('post-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Close modal on overlay click
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) closeModal(overlay.id);
+    });
+  });
+
+  async function signupAlert(e) {
+    e.preventDefault();
+    const email = document.getElementById('alert-email').value;
+    try {
+      await fetch('/api/alerts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, keywords: 'minnesota cannabis' })
+      });
+      showToast('✅ You\'re on the list! We\'ll notify you of new openings.', 'success');
+      e.target.reset();
+    } catch (err) {
+      showToast('Something went wrong. Please try again.', 'error');
+    }
+  }
+
+  async function submitJob(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = Object.fromEntries(new FormData(form));
+    try {
+      const res = await fetch('/api/post-job', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      if (!res.ok) throw new Error();
+      closeModal('post-modal');
+      showToast('✅ Received! We\'ll email you a payment link within a few hours.', 'success');
+      form.reset();
+    } catch (err) {
+      showToast('Something went wrong. Email us at hello@mncannabisjobs.com', 'error');
+    }
+  }
+
+  function showToast(msg, type = '') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast ' + type;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 4000);
+  }
+
+  // Escape key closes modals
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeModal('job-modal');
+      closeModal('post-modal');
+    }
+  });
+
+  loadJobs();
+</script>
+</body>
+</html>
